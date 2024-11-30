@@ -118,6 +118,9 @@
     }
     const dates = document.querySelectorAll(".date");
 
+    const plural = (/** @type {number} */ n, /** @type {string} */ s) =>
+      `${n} ${s}${n === 1 ? "" : "s"}`;
+
     // ts-check
     const iv = setInterval(() => {
       const nowDate = new Date();
@@ -135,7 +138,7 @@
         ((now - MEOWER_START) / (MEOWER_DEATH - MEOWER_START)) *
         100
       ).toFixed(3);
-      time.textContent = `meower dies in ${dys} days, ${hrs} hours, ${min} minutes, and ${sec} seconds. we are ${percentage}% through it's life.`;
+      time.textContent = `meower dies in ${plural(dys, "day")}, ${plural(hrs, "hour")}, ${plural(min, "minute")}, and ${plural(sec, "second")}. we are ${percentage}% through it's life.`;
       dates.forEach((date) => {
         date.textContent = nowDate.toLocaleString();
       });
