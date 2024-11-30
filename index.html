@@ -137,7 +137,7 @@
       const percentage = (
         ((now - MEOWER_START) / (MEOWER_DEATH - MEOWER_START)) *
         100
-      ).toFixed(3);
+      ).toFixed(5);
       time.textContent = `meower dies in ${plural(dys, "day")}, ${plural(hrs, "hour")}, ${plural(min, "minute")}, and ${plural(sec, "second")}. we are ${percentage}% through it's life.`;
       dates.forEach((date) => {
         date.textContent = nowDate.toLocaleString();
