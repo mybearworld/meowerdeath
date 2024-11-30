@@ -44,6 +44,9 @@
         align-items: center;
         gap: 0.7em;
       }
+      .pfpwrap {
+        position: relative;
+      }
       .pfp {
         width: 3.75em;
         height: 3.75em;
@@ -55,11 +58,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        position: relative;
       }
       .pfp img {
         width: 100%;
         height: 100%;
+      }
+      .pfp:hover {
+        scale: 1.1;
       }
       .online {
         position: absolute;
@@ -67,8 +72,9 @@
         height: 1em;
         border-radius: 100%;
         background-color: #32cd32;
-        bottom: calc(-0.2em - 5px);
+        bottom: -0.2em;
         right: -0.2em;
+        z-index: 1;
       }
       h2.username {
         font-size: 200%;
@@ -86,12 +92,14 @@
   <body>
     <div class="post">
       <div class="postheader">
-        <div class="pfp">
-          <img
-            src="https://eris.pages.dev/meo/images/avatars/icon_17.svg"
-            alt="h's profile picture"
-          />
+        <div class="pfpwrap">
           <div class="online"></div>
+          <a href="https://app.meower.org/users/h" target="_blank" class="pfp">
+            <img
+              src="https://eris.pages.dev/meo/images/avatars/icon_17.svg"
+              alt="h's profile picture"
+            />
+          </a>
         </div>
         <div>
           <h2 class="username">h</h2>
@@ -102,11 +110,17 @@
     </div>
     <div class="post">
       <div class="postheader">
-        <div class="pfp">
-          <img
-            src="https://eris.pages.dev/meo/images/avatars/icon_18.svg"
-            alt="Tnix's profile picture"
-          />
+        <div class="pfpwrap">
+          <a
+            href="https://app.meower.org/users/Tnix"
+            target="_blank"
+            class="pfp"
+          >
+            <img
+              src="https://eris.pages.dev/meo/images/avatars/icon_18.svg"
+              alt="Tnix's profile picture"
+            />
+          </a>
           <div class="online"></div>
         </div>
         <div>
