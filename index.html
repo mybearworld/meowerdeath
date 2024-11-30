@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meower Death</title>
+  </head>
+  <body>
+    <p id="time"></p>
+  </body>
+  <script type="module">
+    const MEOWER_START = new Date("2020-07-27T00:00:00.000Z");
+    const MEOWER_DEATH = new Date("2024-12-01T00:00:00.000+00:00").getTime();
+
+    const time = document.querySelector("#time");
+    if (!time) {
+      throw new Error("Time does not exist");
+    }
+
+    // ts-check
+    setInterval(() => {
+      const now = Date.now();
+      const distance = MEOWER_DEATH - now;
+      const sec = Math.floor((distance / 1000) % 60);
+      const min = Math.floor((distance / 1000 / 60) % 60);
+      const hrs = Math.floor((distance / 1000 / 60 / 60) % 24);
+      const dys = Math.floor(distance / 1000 / 60 / 60 / 24);
+      const percentage = (
+        ((now - MEOWER_START) / (MEOWER_DEATH - MEOWER_START)) *
+        100
+      ).toFixed(3);
+      time.textContent = `meower dies in ${dys} days, ${hrs} hours, ${min} minutes, and ${sec} seconds. we are ${percentage}% through it's life.`;
+    });
+  </script>
+</html>
