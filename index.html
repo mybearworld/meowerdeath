@@ -55,10 +55,20 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
       }
       .pfp img {
         width: 100%;
         height: 100%;
+      }
+      .online {
+        position: absolute;
+        width: 1em;
+        height: 1em;
+        border-radius: 100%;
+        background-color: #32cd32;
+        bottom: calc(-0.2em - 5px);
+        right: -0.2em;
       }
       h2.username {
         font-size: 200%;
@@ -81,6 +91,7 @@
             src="https://eris.pages.dev/meo/images/avatars/icon_17.svg"
             alt="h's profile picture"
           />
+          <div class="online"></div>
         </div>
         <div>
           <h2 class="username">h</h2>
@@ -96,6 +107,7 @@
             src="https://eris.pages.dev/meo/images/avatars/icon_18.svg"
             alt="Tnix's profile picture"
           />
+          <div class="online"></div>
         </div>
         <div>
           <h2 class="username">Tnix</h2>
