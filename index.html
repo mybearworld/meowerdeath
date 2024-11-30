@@ -4,9 +4,108 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meower Death</title>
+    <style>
+      @font-face {
+        font-family: Simvoni;
+        src: url("./fonts/Simvoni.ttf");
+      }
+      @font-face {
+        font-family: Simvoni;
+        font-weight: bold;
+        src: url("./fonts/Simvoni-Bold.ttf");
+      }
+      p {
+        margin-block: 0;
+      }
+      a {
+        color: #ac5b18;
+      }
+      body {
+        background-color: #181818;
+        color: #eef;
+        font-family: Simvoni;
+        font-size: 15pt;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      .post {
+        border: 2px solid #e48b26;
+        border-radius: 5px;
+        padding: 0.6em;
+        margin-bottom: 0.4em;
+        width: 90%;
+      }
+      .postheader {
+        display: flex;
+        align-items: center;
+        gap: 0.7em;
+      }
+      .pfp {
+        width: 3.75em;
+        height: 3.75em;
+        box-sizing: border-box;
+        background-color: white;
+        border: 1.5px solid #d9d9d9;
+        border-bottom-width: 5px;
+        border-radius: 1.25em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .pfp img {
+        width: 100%;
+        height: 100%;
+      }
+      h2.username {
+        font-size: 200%;
+        margin: 0;
+      }
+      .date {
+        font-style: italic;
+      }
+      .postcontent {
+        margin-top: 1em;
+        margin-bottom: 1em;
+      }
+    </style>
   </head>
   <body>
-    <p id="time"></p>
+    <div class="post">
+      <div class="postheader">
+        <div class="pfp">
+          <img
+            src="https://eris.pages.dev/meo/images/avatars/icon_17.svg"
+            alt="h's profile picture"
+          />
+        </div>
+        <div>
+          <h2 class="username">h</h2>
+          <span class="date"></span>
+        </div>
+      </div>
+      <p class="postcontent" id="time"></p>
+    </div>
+    <div class="post">
+      <div class="postheader">
+        <div class="pfp">
+          <img
+            src="https://eris.pages.dev/meo/images/avatars/icon_1.svg"
+            alt="mybearworld's profile picture"
+          />
+        </div>
+        <div>
+          <h2 class="username">mybearworld</h2>
+          <span class="date"></span>
+        </div>
+      </div>
+      <p class="postcontent">
+        <a href="https://app.meower.org/users/h" target="_blank">@h</a>
+        countdown
+      </p>
+    </div>
   </body>
   <script type="module">
     const MEOWER_START = new Date("2020-07-27T00:00:00.000Z");
@@ -16,10 +115,16 @@
     if (!time) {
       throw new Error("Time does not exist");
     }
+    const dates = document.querySelectorAll(".date");
 
     // ts-check
-    setInterval(() => {
-      const now = Date.now();
+    const iv = setInterval(() => {
+      const nowDate = new Date();
+      const now = nowDate.getTime();
+      if (now >= MEOWER_DEATH) {
+        clearInterval(iv);
+        document.body.textContent = "rip";
+      }
       const distance = MEOWER_DEATH - now;
       const sec = Math.floor((distance / 1000) % 60);
       const min = Math.floor((distance / 1000 / 60) % 60);
@@ -30,6 +135,9 @@
         100
       ).toFixed(3);
       time.textContent = `meower dies in ${dys} days, ${hrs} hours, ${min} minutes, and ${sec} seconds. we are ${percentage}% through it's life.`;
+      dates.forEach((date) => {
+        date.textContent = nowDate.toLocaleString();
+      });
     });
   </script>
 </html>
