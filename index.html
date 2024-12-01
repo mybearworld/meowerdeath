@@ -87,27 +87,15 @@
         margin-top: 1em;
         margin-bottom: 1em;
       }
+      .postcontent.posting {
+        opacity: 0.5;
+      }
+      .postcontent.error {
+        color: crimson;
+      }
     </style>
   </head>
   <body>
-    <div class="post">
-      <div class="postheader">
-        <div class="pfpwrap">
-          <div class="online"></div>
-          <a href="https://app.meower.org/users/h" target="_blank" class="pfp">
-            <img
-              src="https://eris.pages.dev/meo/images/avatars/icon_17.svg"
-              alt="h's profile picture"
-            />
-          </a>
-        </div>
-        <div>
-          <h2 class="username">h</h2>
-          <span class="date"></span>
-        </div>
-      </div>
-      <p class="postcontent" id="time"></p>
-    </div>
     <div class="post">
       <div class="postheader">
         <div class="pfpwrap">
@@ -117,56 +105,89 @@
             class="pfp"
           >
             <img
-              src="https://eris.pages.dev/meo/images/avatars/icon_18.svg"
+              src="https://app.meower.org/assets/icon_err-8c194397.svg"
               alt="Tnix's profile picture"
             />
           </a>
-          <div class="online"></div>
         </div>
         <div>
           <h2 class="username">Tnix</h2>
-          <span class="date"></span>
+          <span class="date date-now"></span>
+        </div>
+      </div>
+      <p class="postcontent posting">
+        <a href="https://app.meower.org/users/h" target="_blank">@h</a> death
+      </p>
+      <p class="postcontent error">
+        SyntaxError: Failed to execute 'json' on 'Response': Unexpected end of
+        JSON input
+      </p>
+    </div>
+    <div class="post">
+      <div class="postheader">
+        <div class="pfpwrap">
+          <a
+            href="https://app.meower.org/users/Meower"
+            target="_blank"
+            class="pfp"
+          >
+            <img
+              src="https://app.meower.org/assets/icon_err-8c194397.svg"
+              alt="Meower's profile picture"
+            />
+          </a>
+        </div>
+        <div>
+          <h2 class="username">Meower</h2>
+          <span class="date">01/12/2024, 01:00:00</span>
+        </div>
+      </div>
+      <div class="postcontent">
+        Meower ended service on December 1st, 2024 due to challenges in
+        development and moderation. If you would like to stay in touch with the
+        Meower community, you may join our Discord server at
+        <a href="https://discord.gg/pHpMHtu8WZ">https://discord.gg/pHpMHtu8WZ</a
+        >. Thank you to everyone who had a hand in this project &lt;3
+      </div>
+    </div>
+    <div class="post">
+      <div class="postheader">
+        <div class="pfpwrap">
+          <a
+            href="https://app.meower.org/users/Meower"
+            target="_blank"
+            class="pfp"
+          >
+            <img
+              src="https://app.meower.org/assets/icon_err-8c194397.svg"
+              alt="Meower's profile picture"
+            />
+          </a>
+        </div>
+        <div>
+          <h2 class="username">Meower</h2>
+          <span class="date">01/12/2024, 01:00:00</span>
         </div>
       </div>
       <p class="postcontent">
-        <a href="https://app.meower.org/users/h" target="_blank">@h</a>
-        death
+        You may download your data here:
+        <a
+          href="https://s3.us-west-004.backblazeb2.com/meower/85f4e24a-a204-4d79-967d-a314d15efd88.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=a5c8502cb3756ba959b5e956b%2F20241201%2Fus-west-004%2Fs3%2Faws4_request&X-Amz-Date=20241201T154004Z&X-Amz-Expires=1800&X-Amz-SignedHeaders=host&X-Amz-Signature=777f375edd28506ada02ac2f2bc70ab9482149426a2bb676c4555c2a03648671"
+          target="_blank"
+          >https://s3.us-west-004.backblazeb2.com/meower/85f4e24a-a204-4d79-967d-a314d15efd88.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=a5c8502cb3756ba959b5e956b%2F20241201%2Fus-west-004%2Fs3%2Faws4_request&X-Amz-Date=20241201T154004Z&X-Amz-Expires=1800&X-Amz-SignedHeaders=host&X-Amz-Signature=777f375edd28506ada02ac2f2bc70ab9482149426a2bb676c4555c2a03648671</a
+        >
       </p>
+      <p class="postcontent">Please do not share this link!</p>
     </div>
   </body>
   <script type="module">
-    const MEOWER_START = new Date("2020-07-27T00:00:00.000Z");
-    const MEOWER_DEATH = new Date("2024-12-01T00:00:00.000+00:00").getTime();
-
-    const time = document.querySelector("#time");
-    if (!time) {
-      throw new Error("Time does not exist");
-    }
-    const dates = document.querySelectorAll(".date");
-
-    const plural = (/** @type {number} */ n, /** @type {string} */ s) =>
-      `${n} ${s}${n === 1 ? "" : "s"}`;
+    const dates = document.querySelectorAll(".date-now");
 
     // ts-check
     const iv = setInterval(() => {
-      const nowDate = new Date();
-      const now = nowDate.getTime();
-      if (now >= MEOWER_DEATH) {
-        clearInterval(iv);
-        document.body.textContent = "rip";
-      }
-      const distance = MEOWER_DEATH - now;
-      const sec = Math.floor((distance / 1000) % 60);
-      const min = Math.floor((distance / 1000 / 60) % 60);
-      const hrs = Math.floor((distance / 1000 / 60 / 60) % 24);
-      const dys = Math.floor(distance / 1000 / 60 / 60 / 24);
-      const percentage = (
-        ((now - MEOWER_START) / (MEOWER_DEATH - MEOWER_START)) *
-        100
-      ).toFixed(5);
-      time.textContent = `meower dies in ${plural(dys, "day")}, ${plural(hrs, "hour")}, ${plural(min, "minute")}, and ${plural(sec, "second")}. we are ${percentage}% through it's life.`;
+      const now = new Date().toLocaleString();
       dates.forEach((date) => {
-        date.textContent = nowDate.toLocaleString();
+        date.textContent = now;
       });
     });
   </script>
