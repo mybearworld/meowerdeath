@@ -140,7 +140,7 @@
         </div>
         <div>
           <h2 class="username">Meower</h2>
-          <span class="date">01/12/2024, 01:00:00</span>
+          <span class="date date-death"></span>
         </div>
       </div>
       <div class="postcontent">
@@ -167,7 +167,7 @@
         </div>
         <div>
           <h2 class="username">Meower</h2>
-          <span class="date">01/12/2024, 01:00:00</span>
+          <span class="date date-death"></span>
         </div>
       </div>
       <p class="postcontent">
@@ -182,13 +182,21 @@
     </div>
   </body>
   <script type="module">
-    const dates = document.querySelectorAll(".date-now");
+    const MEOWER_DEATH = new Date(
+      "2024-12-01T00:00:00.000+00:00"
+    ).toLocaleString();
+
+    const dateNow = document.querySelectorAll(".date-now");
+    const dateDeath = document.querySelectorAll(".date-death");
 
     // ts-check
     const iv = setInterval(() => {
       const now = new Date().toLocaleString();
-      dates.forEach((date) => {
+      dateNow.forEach((date) => {
         date.textContent = now;
+      });
+      dateDeath.forEach((date) => {
+        date.textContent = MEOWER_DEATH;
       });
     });
   </script>
